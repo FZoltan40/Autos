@@ -33,6 +33,30 @@ namespace Auto
 
             conn.Connection.Close();
         }
+
+        public static void addNewCar()
+        {
+            conn.Connection.Open();
+            string brand, type, license;
+            int date;
+
+            Console.Write("Kérem az autó márkáját: ");
+            brand = Console.ReadLine();
+            Console.Write("Kérem az autó típusát: ");
+            type = Console.ReadLine();
+            Console.Write("Kérem az autó motorszámát: ");
+            license = Console.ReadLine();
+            Console.Write("Kérem az autó gyártási évét: ");
+            date = int.Parse(Console.ReadLine());
+
+            string sql = $"INSERT INTO `cars`(`Brand`, `Type`, `License`, `Date`) VALUES ('{brand}','{type}','{license}',{date})";
+
+            MySqlCommand cmd = new MySqlCommand(sql, conn.Connection);
+            cmd.ExecuteNonQuery();
+
+            conn.Connection.Close();
+
+        }
         static void Main(string[] args)
         {
             feltolt();
@@ -40,6 +64,7 @@ namespace Auto
             {
                 Console.WriteLine($"Autó gyártója: {item.Brand}, motorszáma: {item.License}");
             }
+            //addNewCar();
 
         }
     }

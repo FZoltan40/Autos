@@ -1,7 +1,10 @@
-﻿namespace Auto
+﻿using MySql.Data.MySqlClient;
+
+namespace Auto
 {
     public class Connect
     {
+        public static MySqlConnection Connection;
         private string Host;
         private string Database;
         private string Username;
@@ -16,6 +19,8 @@
             Password = "";
 
             ConnectionString = "SERVER=" + Host + ";DATABASE=" + Database + ";UID=" + Username + ";PASSWORD=" + Password + ";SslMode=None";
+
+            Connection = new MySqlConnection(ConnectionString);
         }
     }
 }

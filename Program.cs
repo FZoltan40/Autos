@@ -57,14 +57,35 @@ namespace Auto
             conn.Connection.Close();
 
         }
+
+        public static void upDateCar()
+        {
+            conn.Connection.Open();
+
+            int id, date;
+
+            Console.Write("Kérem az autó azonosítóját: ");
+            id = int.Parse(Console.ReadLine());
+            Console.Write("Kérem az autó gyártási évét: ");
+            date = int.Parse(Console.ReadLine());
+
+            string sql = $"UPDATE `cars` SET `Date`={date} WHERE Id={id}";
+
+            MySqlCommand cmd = new MySqlCommand(sql, conn.Connection);
+            cmd.ExecuteNonQuery();
+
+            conn.Connection.Close();
+        }
         static void Main(string[] args)
         {
-            feltolt();
+            /*feltolt();
             foreach (var item in cars)
             {
                 Console.WriteLine($"Autó gyártója: {item.Brand}, motorszáma: {item.License}");
             }
-            //addNewCar();
+            addNewCar();*/
+
+            upDateCar();
 
         }
     }
